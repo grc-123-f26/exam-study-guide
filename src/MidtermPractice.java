@@ -28,10 +28,14 @@ public class MidtermPractice {
      * Example: input: ["why"=7, "hello"=,8 "brilliant"=99, "world"=15, "amazing"=17] -> output: 2
      */
     public static int countLongWords(Map<String, Integer> map) {
+        //get keyset >> foreach word : keyset >> if length > 5 count++
+        int count = 0;
         for (String word : map.keySet()){
-
+            if (word.length() > 5) {
+                count++;
+            }
         }  
-        return -1;
+        return count;
     }
 
     /**
