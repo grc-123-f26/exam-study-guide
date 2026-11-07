@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -10,16 +11,26 @@ public class MidtermPractice {
      * Example: input: ["apple", "banana", "kiwi"] -> output: "banana"
      */
     public static String findLongestWord(List<String> list) {
-        return "";
+        //iterate through each word, then find length of each string.
+        String longestWord = "";
+        for (String word: list) {
+            if (word.length() > longestWord.length() ) {
+                longestWord = word;
+            }
+        }  
+        return longestWord;
     }
 
     /**
      * Counts how many words are longer than 5 characters in the keys of a Map.
      * @param map a Map of strings to integers
      * @return the count of words longer than 5 characters
-     * Example: input: ["why"=7, "hello"=8, "brilliant"=99, "world"=15, "amazing"=17] -> output: 2
+     * Example: input: ["why"=7, "hello"=,8 "brilliant"=99, "world"=15, "amazing"=17] -> output: 2
      */
     public static int countLongWords(Map<String, Integer> map) {
+        for (String word : map.keySet()){
+
+        }  
         return -1;
     }
 
