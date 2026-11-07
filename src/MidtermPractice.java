@@ -47,17 +47,16 @@ public class MidtermPractice {
     public static double findAverage(float[] arr) {
         //get floats/decimal values >> add sum+= & count++ >> return double
         //if empty >> initialize var with 0
-        double avg = 0;
         int count = 0;
         double sum = 0;
         for (float flo : arr) {
             sum+= flo;
             count++;
         }
-        if (count == 0) {
-            return 0;    
+        if (count != 0) {
+            return sum / count;    
         } else {
-            return sum/count;
+            return 0;
         }
     }
 
@@ -68,7 +67,14 @@ public class MidtermPractice {
      * Example: input: {"a"=7, "x"=4, "z"=5} -> output: 2
      */
     public static int countOddNumbers(Map<String, Integer> map) {
-        return -1;
+        //odd num %2 != 0; count=0, get values
+        int count = 0;
+        for (int val : map.values()) {
+            if (val != 0 && val % 2 != 0) {
+                count++;
+            }
+        }
+        return count;
     }
 
     /**
@@ -82,7 +88,7 @@ public class MidtermPractice {
     public static boolean allDivisibleBy3(int[] arr) {
         return false;
     }
-
+// <<<<<<<<<<<<< CHECK TIME >>>>>>>>>>>>> //
     /**
      * Returns true if all words start with 'a' or 'A' in an List of Strings.
      * Returns true if the list is empty.
