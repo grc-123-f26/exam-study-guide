@@ -10,7 +10,16 @@ public class MidtermPractice {
      * Example: input: ["apple", "banana", "kiwi"] -> output: "banana"
      */
     public static String findLongestWord(List<String> list) {
-        return "";
+        if (list.size() == 0) {
+            return "";
+        }
+        String longestWord = list.get(0);
+        for (String word : list) {
+            if (word.length() > longestWord.length()) {
+                longestWord = word;
+            }
+        }
+        return longestWord;
     }
 
     /**
@@ -20,7 +29,13 @@ public class MidtermPractice {
      * Example: input: ["why"=7, "hello"=8, "brilliant"=99, "world"=15, "amazing"=17] -> output: 2
      */
     public static int countLongWords(Map<String, Integer> map) {
-        return -1;
+     int count = 0;
+        for (String key : map.keySet()) {
+            if (key.length() > 5) {
+                count++;
+            }
+        }
+        return count;
     }
 
     /**
@@ -30,7 +45,16 @@ public class MidtermPractice {
      * Example: input: [1.5, 3.5, 2.0, 3.0] -> output: 2.5
      */
     public static double findAverage(float[] arr) {
-        return -1.0;
+       if (arr.length == 0) {
+            return 0.0;
+        }
+        int numCount = 0;
+        double average = 0.0;
+       while (numCount < arr.length) {
+            average += arr[numCount];
+            numCount++;
+        }
+      return average / arr.length;
     }
 
     /**
