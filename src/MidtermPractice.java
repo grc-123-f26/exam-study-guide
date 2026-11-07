@@ -45,7 +45,20 @@ public class MidtermPractice {
      * Example: input: [1.5, 3.5, 2.0, 3.0] -> output: 2.5
      */
     public static double findAverage(float[] arr) {
-        return -1.0;
+        //get floats/decimal values >> add sum+= & count++ >> return double
+        //if empty >> initialize var with 0
+        double avg = 0;
+        int count = 0;
+        double sum = 0;
+        for (float flo : arr) {
+            sum+= flo;
+            count++;
+        }
+        if (count == 0) {
+            return 0;    
+        } else {
+            return sum/count;
+        }
     }
 
     /**
