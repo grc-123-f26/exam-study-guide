@@ -95,7 +95,7 @@ public class MidtermPractice {
         }
         return true;
     }
-    
+
 // <<<<<<<<<<<<< CHECK TIME >>>>>>>>>>>>> // got distracted by wrong test
     /**
      * Returns true if all words start with 'a' or 'A' in an List of Strings.
@@ -106,7 +106,13 @@ public class MidtermPractice {
      * Example: input: ["apple", "banana", "avocado"] -> output: false
      */
     public static boolean allStartWithA(List<String> list) {
-        return false;
+        //if word.toLowerCase().substring(0,1) != "a" >> false
+        for (String word : list) {
+            if (!word.toLowerCase().substring(0,1).equals("a")) {
+                return false;
+            }
+        }  
+        return true;
     }
 
     /**
@@ -115,6 +121,9 @@ public class MidtermPractice {
      * @param head the head of the linked list.
      */
     public static boolean allPositive(ListNode head) {
+        if (head == null) {
+            return true;
+        }
         return true;
     }
 
