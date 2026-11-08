@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -10,17 +11,31 @@ public class MidtermPractice {
      * Example: input: ["apple", "banana", "kiwi"] -> output: "banana"
      */
     public static String findLongestWord(List<String> list) {
-        return "";
+        //iterate through each word, then find length of each string.
+        String longestWord = "";
+        for (String word: list) {
+            if (word.length() > longestWord.length() ) {
+                longestWord = word;
+            }
+        }  
+        return longestWord;
     }
 
     /**
      * Counts how many words are longer than 5 characters in the keys of a Map.
      * @param map a Map of strings to integers
      * @return the count of words longer than 5 characters
-     * Example: input: ["why"=7, "hello"=8, "brilliant"=99, "world"=15, "amazing"=17] -> output: 2
+     * Example: input: ["why"=7, "hello"=,8 "brilliant"=99, "world"=15, "amazing"=17] -> output: 2
      */
     public static int countLongWords(Map<String, Integer> map) {
-        return -1;
+        //get keyset >> foreach word : keyset >> if length > 5 count++
+        int count = 0;
+        for (String word : map.keySet()){
+            if (word.length() > 5) {
+                count++;
+            }
+        }  
+        return count;
     }
 
     /**
@@ -30,7 +45,19 @@ public class MidtermPractice {
      * Example: input: [1.5, 3.5, 2.0, 3.0] -> output: 2.5
      */
     public static double findAverage(float[] arr) {
-        return -1.0;
+        //get floats/decimal values >> add sum+= & count++ >> return double
+        //if empty >> initialize var with 0
+        int count = 0;
+        double sum = 0;
+        for (float flo : arr) {
+            sum+= flo;
+            count++;
+        }
+        if (count != 0) {
+            return sum / count;    
+        } else {
+            return 0;
+        }
     }
 
     /**
@@ -40,7 +67,14 @@ public class MidtermPractice {
      * Example: input: {"a"=7, "x"=4, "z"=5} -> output: 2
      */
     public static int countOddNumbers(Map<String, Integer> map) {
-        return -1;
+        //odd num %2 != 0; count=0, get values
+        int count = 0;
+        for (int val : map.values()) {
+            if (val != 0 && val % 2 != 0) {
+                count++;
+            }
+        }
+        return count;
     }
 
     /**
@@ -52,9 +86,17 @@ public class MidtermPractice {
      * Example 2: input: [3, 4, 6, 9] -> output: false
      */
     public static boolean allDivisibleBy3(int[] arr) {
-        return false;
+        // if empty or num % 3 == 0 return true; else false
+        String divByThree = "";
+        for (int num : arr) {
+            if (arr.length != 0 && num % 3 != 0) {
+                return false;
+            }
+        }
+        return true;
     }
 
+// <<<<<<<<<<<<< CHECK TIME >>>>>>>>>>>>> // got distracted by wrong test
     /**
      * Returns true if all words start with 'a' or 'A' in an List of Strings.
      * Returns true if the list is empty.
@@ -64,7 +106,13 @@ public class MidtermPractice {
      * Example: input: ["apple", "banana", "avocado"] -> output: false
      */
     public static boolean allStartWithA(List<String> list) {
-        return false;
+        //if word.toLowerCase().substring(0,1) != "a" >> false
+        for (String word : list) {
+            if (!word.toLowerCase().substring(0,1).equals("a")) {
+                return false;
+            }
+        }  
+        return true;
     }
 
     /**
@@ -73,6 +121,16 @@ public class MidtermPractice {
      * @param head the head of the linked list.
      */
     public static boolean allPositive(ListNode head) {
+        if (head == null) {
+            return true;
+        }
+        ListNode current = head;
+        while (current != null) {
+            if (current.data <= 0) {
+                return false;
+            }
+            current = current.next;
+        }
         return true;
     }
 
@@ -85,7 +143,16 @@ public class MidtermPractice {
      * Explanation: 5 * 3 * 4 = 60
      */
     public static int product(ListNode head) {
-        return 1;
+        if (head == null) {
+            return 1;
+        }
+        ListNode current = head;
+        int total = 1;
+        while (current != null) {
+            total *= current.data;
+            current = current.next;
+        }
+        return total;
     }
 
     /**
@@ -101,7 +168,23 @@ public class MidtermPractice {
      * Explanation: 6, 2, and 4 are each strictly less than 10, so they are removed from the list
      */
     public static ListNode removeSmall(ListNode head) {
-        return null;
+        //go through list >> if value < 10, current = current.next.next; else current = current.next;
+        //where to stop? 
+        if (head == null) {
+            return null;
+        }
+        while (head != null && head.data < 10) {
+            head = head.next;
+        }
+        ListNode current = head;
+        while (current != null && current.next != null) {
+            if (current.next.data < 10) {
+                current.next = current.next.next;
+            } else {
+                current = current.next;
+            }
+        }
+        return head;
     }
 
 }
