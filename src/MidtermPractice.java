@@ -124,6 +124,13 @@ public class MidtermPractice {
         if (head == null) {
             return true;
         }
+        ListNode current = head;
+        while (current != null) {
+            if (current.data <= 0) {
+                return false;
+            }
+            current = current.next;
+        }
         return true;
     }
 
