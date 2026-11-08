@@ -10,7 +10,14 @@ public class MidtermPractice {
      * Example: input: ["apple", "banana", "kiwi"] -> output: "banana"
      */
     public static String findLongestWord(List<String> list) {
-        return "";
+        String longest = "";
+
+        for (String word : list) {
+            if (word.length() > longest.length()) {
+                longest = word;
+            }
+        }
+        return longest;
     }
 
     /**
@@ -20,7 +27,13 @@ public class MidtermPractice {
      * Example: input: ["why"=7, "hello"=8, "brilliant"=99, "world"=15, "amazing"=17] -> output: 2
      */
     public static int countLongWords(Map<String, Integer> map) {
-        return -1;
+        int count = 0;
+        for (String word : map.keySet()) {
+            if (word.length() > 5) {
+                count++;
+            }
+        }
+        return count;
     }
 
     /**
@@ -30,7 +43,14 @@ public class MidtermPractice {
      * Example: input: [1.5, 3.5, 2.0, 3.0] -> output: 2.5
      */
     public static double findAverage(float[] arr) {
-        return -1.0;
+        if (arr.length == 0) {
+            return 0.0;
+        }
+        double sum = 0.0;
+        for (float num : arr) {
+            sum += num;
+        }
+        return sum / arr.length;
     }
 
     /**
@@ -40,7 +60,16 @@ public class MidtermPractice {
      * Example: input: {"a"=7, "x"=4, "z"=5} -> output: 2
      */
     public static int countOddNumbers(Map<String, Integer> map) {
-        return -1;
+        int count = 0;
+
+        for (int num : map.values()) {
+
+             if (num % 2 != 0) {
+                count++;
+        }
+           
+            }
+        return count;
     }
 
     /**
@@ -52,7 +81,12 @@ public class MidtermPractice {
      * Example 2: input: [3, 4, 6, 9] -> output: false
      */
     public static boolean allDivisibleBy3(int[] arr) {
-        return false;
+        for (int num : arr) {
+            if (num % 3 != 0) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -64,7 +98,12 @@ public class MidtermPractice {
      * Example: input: ["apple", "banana", "avocado"] -> output: false
      */
     public static boolean allStartWithA(List<String> list) {
-        return false;
+        for (String word : list) {
+            if (word.isEmpty() || (word.charAt(0) != 'a' && word.charAt(0) != 'A')) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -73,6 +112,14 @@ public class MidtermPractice {
      * @param head the head of the linked list.
      */
     public static boolean allPositive(ListNode head) {
+        ListNode current = head;
+        while (current != null) {
+            if (current.data <= 0) {
+                return false;
+
+            }
+            current = current.next;
+        }
         return true;
     }
 
@@ -85,7 +132,14 @@ public class MidtermPractice {
      * Explanation: 5 * 3 * 4 = 60
      */
     public static int product(ListNode head) {
-        return 1;
+        int result = 1;
+        ListNode current = head;
+        
+        while (current != null) {
+            result *= current.data;
+            current = current.next;
+        }
+        return result;
     }
 
     /**
@@ -101,7 +155,18 @@ public class MidtermPractice {
      * Explanation: 6, 2, and 4 are each strictly less than 10, so they are removed from the list
      */
     public static ListNode removeSmall(ListNode head) {
-        return null;
+        ListNode dummy = new ListNode(0, head);
+        ListNode current = dummy;
+        
+        while (current.next != null) {
+            if (current.next.data < 10) {
+                current.next = current.next.next;
+            } else {
+                current = current.next;
+            }
+        }
+
+        return dummy.next;
     }
 
 }
