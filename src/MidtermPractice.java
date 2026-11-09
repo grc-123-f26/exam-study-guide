@@ -10,7 +10,13 @@ public class MidtermPractice {
      * Example: input: ["apple", "banana", "kiwi"] -> output: "banana"
      */
     public static String findLongestWord(List<String> list) {
-        return "";
+        String longest = "";
+        for(String word : list) {
+            if(word.length() > longest.length()) {
+                longest = word;
+            }
+        }
+        return longest;
     }
 
     /**
@@ -20,7 +26,14 @@ public class MidtermPractice {
      * Example: input: ["why"=7, "hello"=8, "brilliant"=99, "world"=15, "amazing"=17] -> output: 2
      */
     public static int countLongWords(Map<String, Integer> map) {
-        return -1;
+        int longer = 0;
+
+        for(String key : map.keySet()) {
+            if(key.length() > 5) {
+                longer++;
+            }
+        }
+        return longer;
     }
 
     /**
@@ -30,7 +43,17 @@ public class MidtermPractice {
      * Example: input: [1.5, 3.5, 2.0, 3.0] -> output: 2.5
      */
     public static double findAverage(float[] arr) {
-        return -1.0;
+        if (arr.length == 0) {
+            return 0;
+        }
+
+        double sum = 0;
+        for(float x : arr) {
+            sum += x;
+        }
+        double average = sum/arr.length;
+
+        return average;
     }
 
     /**
@@ -40,7 +63,14 @@ public class MidtermPractice {
      * Example: input: {"a"=7, "x"=4, "z"=5} -> output: 2
      */
     public static int countOddNumbers(Map<String, Integer> map) {
-        return -1;
+        int odd = 0;
+
+        for(int i  : map.values()) {
+            if(i % 2 != 0) {
+                odd++;
+            }
+        }
+        return odd;
     }
 
     /**
@@ -52,7 +82,16 @@ public class MidtermPractice {
      * Example 2: input: [3, 4, 6, 9] -> output: false
      */
     public static boolean allDivisibleBy3(int[] arr) {
-        return false;
+        if(arr.length == 0) {
+            return true;
+        }
+        for(int i : arr) {
+            if(i % 3 != 0) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -64,7 +103,13 @@ public class MidtermPractice {
      * Example: input: ["apple", "banana", "avocado"] -> output: false
      */
     public static boolean allStartWithA(List<String> list) {
-        return false;
+        
+        for(String s : list) {
+            if(!(s.startsWith("a") || s.startsWith("A"))) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -73,7 +118,17 @@ public class MidtermPractice {
      * @param head the head of the linked list.
      */
     public static boolean allPositive(ListNode head) {
-        return true;
+        if(head == null) {
+            return true; 
+        }
+        ListNode current = head;
+        while(current != null) {
+            if(current.data <= 0) {
+                return false;
+            }
+            current = current.next;
+         }
+         return true;
     }
 
     /**
@@ -85,7 +140,16 @@ public class MidtermPractice {
      * Explanation: 5 * 3 * 4 = 60
      */
     public static int product(ListNode head) {
-        return 1;
+        if(head == null) {
+            return 1;
+        }
+        int num = 1;
+        ListNode current = head;
+        while(current != null) {
+            num *= current.data;
+            current = current.next;
+        }
+        return num;
     }
 
     /**
@@ -101,7 +165,18 @@ public class MidtermPractice {
      * Explanation: 6, 2, and 4 are each strictly less than 10, so they are removed from the list
      */
     public static ListNode removeSmall(ListNode head) {
-        return null;
-    }
+         while(head != null && head.data < 10) {
+            head = head.next;
+        }
 
+        ListNode current = head;
+        while(current != null && current.next != null) {
+            if(current.next.data < 10) {
+                current.next = current.next.next;
+            } else {
+            current = current.next;
+        }
+         }
+        return head;
+    }
 }
