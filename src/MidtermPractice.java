@@ -10,7 +10,16 @@ public class MidtermPractice {
      * Example: input: ["apple", "banana", "kiwi"] -> output: "banana"
      */
     public static String findLongestWord(List<String> list) {
-        return "";
+        if (list.isEmpty()) {
+            return "";
+        }
+        String longest = "";
+        for (String word : list) {
+            if (word.length() >  longest.length()) {
+                longest = word;
+            }
+        }
+        return longest;
     }
 
     /**
@@ -20,7 +29,13 @@ public class MidtermPractice {
      * Example: input: ["why"=7, "hello"=8, "brilliant"=99, "world"=15, "amazing"=17] -> output: 2
      */
     public static int countLongWords(Map<String, Integer> map) {
-        return -1;
+        int count = 0;
+        for (String word : map.keySet()) {
+            if (word.length() > 5) {
+                count++;
+            }
+        }
+        return count;
     }
 
     /**
@@ -30,7 +45,17 @@ public class MidtermPractice {
      * Example: input: [1.5, 3.5, 2.0, 3.0] -> output: 2.5
      */
     public static double findAverage(float[] arr) {
-        return -1.0;
+        double avg = 0.0;
+        int count = 0;
+        double sum = 0.0;
+        if (arr.length == 0) {
+            return 0;
+        }
+        for (double number : arr){
+            sum += number;
+            count++;
+        }
+        return sum / count;
     }
 
     /**
@@ -40,7 +65,13 @@ public class MidtermPractice {
      * Example: input: {"a"=7, "x"=4, "z"=5} -> output: 2
      */
     public static int countOddNumbers(Map<String, Integer> map) {
-        return -1;
+        int count = 0;
+        for (int number : map.values()) {
+            if (number % 2 != 0){
+                count++;
+            }
+        }
+        return count;
     }
 
     /**
@@ -52,7 +83,12 @@ public class MidtermPractice {
      * Example 2: input: [3, 4, 6, 9] -> output: false
      */
     public static boolean allDivisibleBy3(int[] arr) {
-        return false;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] % 3 != 0){
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -64,7 +100,15 @@ public class MidtermPractice {
      * Example: input: ["apple", "banana", "avocado"] -> output: false
      */
     public static boolean allStartWithA(List<String> list) {
-        return false;
+        if (list.isEmpty()) {
+            return true;
+        }
+        for (String word : list) {
+            if (word.charAt(0) != 'a' && word.charAt(0) != 'A') {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -73,6 +117,14 @@ public class MidtermPractice {
      * @param head the head of the linked list.
      */
     public static boolean allPositive(ListNode head) {
+        ListNode current = head;
+        while (current != null) {
+            if (current.data > 0) {
+                current = current.next;
+            } else {
+                return false;
+            }
+        }
         return true;
     }
 
@@ -85,7 +137,16 @@ public class MidtermPractice {
      * Explanation: 5 * 3 * 4 = 60
      */
     public static int product(ListNode head) {
-        return 1;
+        int product = 1;
+        ListNode current = head;
+        if (head == null) {
+            return 1;
+        }
+        while (current != null) {
+            product = current.data * product;
+            current = current.next;
+        }
+        return product;
     }
 
     /**
@@ -101,7 +162,23 @@ public class MidtermPractice {
      * Explanation: 6, 2, and 4 are each strictly less than 10, so they are removed from the list
      */
     public static ListNode removeSmall(ListNode head) {
-        return null;
+        if (head == null) {
+            return null;
+        }
+        while (head != null && head.data < 10) {
+            head = head.next;
+        }
+
+        ListNode current = head;
+        while (current != null && current.next != null) {
+            if (current.next.data < 10) {
+                current.next = current.next.next;
+            } else {
+                current = current.next;
+            }
+        }
+
+        return head;
     }
 
 }
