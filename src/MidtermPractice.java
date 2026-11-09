@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.Map;
+import java.util.ArrayList;
 
 public class MidtermPractice {
     /**
@@ -9,8 +10,20 @@ public class MidtermPractice {
      * @return the longest word in the list or an empty String if the list is empty
      * Example: input: ["apple", "banana", "kiwi"] -> output: "banana"
      */
-    public static String findLongestWord(List<String> list) {
-        return "";
+    public static String findLongestWord(List<String> list) 
+    {
+        String longestWord = "";
+        for(int i = 0; i < list.size(); i++)
+        {
+            String word = list.get(i);
+
+            if(word.length() > longestWord.length())
+            {
+                longestWord = word;
+            }
+        }   
+
+        return longestWord;
     }
 
     /**
@@ -19,8 +32,19 @@ public class MidtermPractice {
      * @return the count of words longer than 5 characters
      * Example: input: ["why"=7, "hello"=8, "brilliant"=99, "world"=15, "amazing"=17] -> output: 2
      */
-    public static int countLongWords(Map<String, Integer> map) {
-        return -1;
+    public static int countLongWords(Map<String, Integer> map) 
+    {
+        int count = 0;
+
+        List<String> keys = new ArrayList<String>(map.keySet());
+        for(int i = 0; i <keys.size(); i++)
+        {
+            if(keys.get(i).length()>5)
+            {
+                count++;
+            }
+        }
+        return count;
     }
 
     /**
@@ -29,8 +53,20 @@ public class MidtermPractice {
      * @return the average of the values or 0 if the array is empty
      * Example: input: [1.5, 3.5, 2.0, 3.0] -> output: 2.5
      */
-    public static double findAverage(float[] arr) {
-        return -1.0;
+    public static double findAverage(float[] arr) 
+    {
+        if(arr.length == 0)
+        {
+            return 0;
+        }
+
+        float sum = 0;
+        for(int i = 0; i < arr.length; i++)
+        {
+            sum += arr[i];
+        }
+
+        return sum/arr.length;
     }
 
     /**
@@ -39,8 +75,21 @@ public class MidtermPractice {
      * @return the count of odd numbers in the values
      * Example: input: {"a"=7, "x"=4, "z"=5} -> output: 2
      */
-    public static int countOddNumbers(Map<String, Integer> map) {
-        return -1;
+    public static int countOddNumbers(Map<String, Integer> map) 
+    {
+        int count = 0;
+
+        ArrayList<Integer> values = new ArrayList<Integer>(map.values());
+
+        for(int i = 0; i < values.size(); i++)
+        {
+            if(values.get(i) % 2 != 0)
+            {
+                count++;
+            }
+        }
+        
+        return count;
     }
 
     /**
@@ -51,8 +100,17 @@ public class MidtermPractice {
      * Example: input: [3, 6, 9] -> output: true
      * Example 2: input: [3, 4, 6, 9] -> output: false
      */
-    public static boolean allDivisibleBy3(int[] arr) {
-        return false;
+    public static boolean allDivisibleBy3(int[] arr) 
+    {
+        for(int i = 0; i < arr.length; i++)
+        {
+            if(arr[i] % 3 != 0)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -63,8 +121,19 @@ public class MidtermPractice {
      * Example: input: ["apple", "Apricot", "avocado"] -> output: true
      * Example: input: ["apple", "banana", "avocado"] -> output: false
      */
-    public static boolean allStartWithA(List<String> list) {
-        return false;
+    public static boolean allStartWithA(List<String> list) 
+    {
+        for(int i = 0; i < list.size(); i++)
+        {
+            String word = list.get(i);
+
+            if(word.charAt(0) != 'a' && word.charAt(0) != 'A')
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -72,7 +141,19 @@ public class MidtermPractice {
      * Returns true if the head is null.
      * @param head the head of the linked list.
      */
-    public static boolean allPositive(ListNode head) {
+    public static boolean allPositive(ListNode head) 
+    {
+        ListNode current = head;
+        while(current != null)
+        {
+            if(current.data <= 0)
+            {
+                return false;
+            }
+
+            current = current.next;
+        }
+
         return true;
     }
 
@@ -84,8 +165,23 @@ public class MidtermPractice {
      * Example output: 60
      * Explanation: 5 * 3 * 4 = 60
      */
-    public static int product(ListNode head) {
-        return 1;
+    public static int product(ListNode head) 
+    {
+        if(head == null)
+        {
+            return 1;
+        }
+
+        int product = 1;
+        ListNode current = head;
+
+        while(current != null)
+        {
+            product = product * current.data;
+            current = current.next;
+        }
+
+        return product;
     }
 
     /**
@@ -100,8 +196,33 @@ public class MidtermPractice {
      * Example output: 99 -> 33 -> 10
      * Explanation: 6, 2, and 4 are each strictly less than 10, so they are removed from the list
      */
-    public static ListNode removeSmall(ListNode head) {
-        return null;
-    }
+    public static ListNode removeSmall(ListNode head) 
+    {
+        while(head != null && head.data < 10)
+        {
+            head = head.next;
+        }
 
+        if(head == null)
+        {
+            return null;
+        }
+       
+        ListNode current = head;
+
+        while(current.next != null)
+        {
+            if(current.next.data < 10)
+            {
+                current.next = current.next.next;
+            }
+
+            else
+            {
+                current = current.next;
+            }
+        }
+
+        return head;
+    }
 }
