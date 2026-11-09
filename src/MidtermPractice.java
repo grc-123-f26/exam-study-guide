@@ -89,6 +89,15 @@ public class MidtermPractice {
      * @param head the head of the linked list.
      */
     public static boolean allPositive(ListNode head) {
+        int num = 0;
+        ListNode current = head;
+        while (current != null) {
+            num = current.data;
+            if (num <= 0) {
+                return false;
+            }
+            current = current.next;
+        }
         return true;
     }
 
