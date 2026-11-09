@@ -1,3 +1,5 @@
+import static org.junit.Assert.fail;
+
 import java.util.List;
 import java.util.Map;
 
@@ -26,7 +28,13 @@ public class MidtermPractice {
      * Example: input: ["why"=7, "hello"=8, "brilliant"=99, "world"=15, "amazing"=17] -> output: 2
      */
     public static int countLongWords(Map<String, Integer> map) {
-        return -1;
+        int counter = 0;
+        for (String string : map.keySet()) {
+            if (string.length() > 5) {
+                counter++;
+            } 
+        }
+        return counter;
     }
 
     /**
