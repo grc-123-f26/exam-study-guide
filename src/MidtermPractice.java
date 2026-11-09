@@ -1,6 +1,8 @@
 import java.util.List;
 import java.util.Map;
 
+import org.junit.platform.engine.support.hierarchical.Node;
+
 public class MidtermPractice {
     /**
      * Finds the longest word in an List of Strings.
@@ -10,7 +12,13 @@ public class MidtermPractice {
      * Example: input: ["apple", "banana", "kiwi"] -> output: "banana"
      */
     public static String findLongestWord(List<String> list) {
-        return "";
+        String longestWord = "";
+        for (String word : list) {
+            if (word.length() > longestWord.length()) {
+                longestWord = word;
+            }
+        }
+        return longestWord;
     }
 
     /**
@@ -20,7 +28,13 @@ public class MidtermPractice {
      * Example: input: ["why"=7, "hello"=8, "brilliant"=99, "world"=15, "amazing"=17] -> output: 2
      */
     public static int countLongWords(Map<String, Integer> map) {
-        return -1;
+        int count = 0;
+        for (String word : map.keySet()) {
+            if (word.length() > 5) {
+                count++;
+            }
+        }
+        return count;
     }
 
     /**
@@ -30,7 +44,14 @@ public class MidtermPractice {
      * Example: input: [1.5, 3.5, 2.0, 3.0] -> output: 2.5
      */
     public static double findAverage(float[] arr) {
-        return -1.0;
+        double sum = 0.0;
+        for (float nums : arr) {
+            sum += nums;
+        }
+        if (arr.length == 0) {
+            return 0;
+        }
+        return sum / arr.length;
     }
 
     /**
@@ -40,7 +61,13 @@ public class MidtermPractice {
      * Example: input: {"a"=7, "x"=4, "z"=5} -> output: 2
      */
     public static int countOddNumbers(Map<String, Integer> map) {
-        return -1;
+        int odd = 0;
+        for (int nums : map.values()){
+            if (nums % 2 != 0){
+                odd++;
+            }
+        }
+        return odd;
     }
 
     /**
@@ -52,7 +79,12 @@ public class MidtermPractice {
      * Example 2: input: [3, 4, 6, 9] -> output: false
      */
     public static boolean allDivisibleBy3(int[] arr) {
-        return false;
+        for(int tree : arr){
+            if(tree % 3 != 0){
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -64,8 +96,17 @@ public class MidtermPractice {
      * Example: input: ["apple", "banana", "avocado"] -> output: false
      */
     public static boolean allStartWithA(List<String> list) {
-        return false;
+        for(String ayeh : list){
+            /* this one took me the longest to figure out so far i was confused on why it was only
+            working for the first string and not the others but i realized that i had || instead of
+            && and it worked*/
+            if (ayeh.isEmpty() || ayeh.charAt(0) != 'a' && ayeh.charAt(0) != 'A'){
+                return false;
+            }
+        }
+        return true;
     }
+
 
     /**
      * Returns whether all nodes in a linked list contain positive (greater than 0) values.
@@ -73,6 +114,15 @@ public class MidtermPractice {
      * @param head the head of the linked list.
      */
     public static boolean allPositive(ListNode head) {
+        ListNode current = head;
+        while (current != null){
+            if (current.data <= 0){
+                return false;
+            }
+           current = current.next;            
+        }
+
+
         return true;
     }
 
@@ -85,7 +135,13 @@ public class MidtermPractice {
      * Explanation: 5 * 3 * 4 = 60
      */
     public static int product(ListNode head) {
-        return 1;
+        ListNode current = head;
+        int product = 1;
+        while (current != null) {
+            product *= current.data;
+            current = current.next;
+        }
+        return product;
     }
 
     /**
@@ -101,7 +157,22 @@ public class MidtermPractice {
      * Explanation: 6, 2, and 4 are each strictly less than 10, so they are removed from the list
      */
     public static ListNode removeSmall(ListNode head) {
-        return null;
+        while (head != null && head.data < 10) {
+            head = head.next;
+        }
+        if (head == null) {
+            return null;
+        }
+
+        ListNode current = head;
+        while (current.next != null) {
+            if (current.next.data < 10) {
+                current.next = current.next.next;
+            } else {
+                current = current.next;
+            }
+        }
+        return head;
     }
 
 }
