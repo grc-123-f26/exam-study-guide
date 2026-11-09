@@ -30,7 +30,11 @@ public class MidtermPractice {
      * Example: input: [1.5, 3.5, 2.0, 3.0] -> output: 2.5
      */
     public static double findAverage(float[] arr) {
-        return -1.0;
+        if (arr.length == 0) {
+            
+        } 
+
+return 0.0;
     }
 
     /**
@@ -85,8 +89,14 @@ public class MidtermPractice {
      * Explanation: 5 * 3 * 4 = 60
      */
     public static int product(ListNode head) {
-        return 1;
+        ListNode current = head;
+        int product = 1;
+        while (current != null) {
+            product *= current.data;
+            current = current.next;
     }
+    return product;
+}
 
     /**
      * CHALLENGE PROBLEM: take extra time for this problem if needed
