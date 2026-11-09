@@ -52,7 +52,7 @@ public class MidtermPractice {
             sum += x;
         }
         double average = sum/arr.length;
-        
+
         return average;
     }
 
@@ -63,7 +63,14 @@ public class MidtermPractice {
      * Example: input: {"a"=7, "x"=4, "z"=5} -> output: 2
      */
     public static int countOddNumbers(Map<String, Integer> map) {
-        return -1;
+        int odd = 0;
+
+        for(int i  : map.values()) {
+            if(i % 2 != 0) {
+                odd++;
+            }
+        }
+        return odd;
     }
 
     /**
