@@ -1,6 +1,6 @@
 import java.util.List;
 import java.util.Map;
-
+ 
 public class MidtermPractice {
     /**
      * Finds the longest word in an List of Strings.
@@ -10,9 +10,15 @@ public class MidtermPractice {
      * Example: input: ["apple", "banana", "kiwi"] -> output: "banana"
      */
     public static String findLongestWord(List<String> list) {
-        return "";
+        String longest = "";
+        for (String word : list) {
+            if (word.length() > longest.length()) {
+                longest = word;
+            }
+        }
+        return longest;
     }
-
+ 
     /**
      * Counts how many words are longer than 5 characters in the keys of a Map.
      * @param map a Map of strings to integers
@@ -20,9 +26,15 @@ public class MidtermPractice {
      * Example: input: ["why"=7, "hello"=8, "brilliant"=99, "world"=15, "amazing"=17] -> output: 2
      */
     public static int countLongWords(Map<String, Integer> map) {
-        return -1;
+        int count = 0;
+        for (String key : map.keySet()) {
+            if (key.length() > 5) {
+                count++;
+            }
+        }
+        return count;
     }
-
+ 
     /**
      * Finds the average of the floats in an array.
      * @param arr an array of floats
@@ -30,9 +42,16 @@ public class MidtermPractice {
      * Example: input: [1.5, 3.5, 2.0, 3.0] -> output: 2.5
      */
     public static double findAverage(float[] arr) {
-        return -1.0;
+        if (arr.length == 0) {
+            return 0.0;
+        }
+        double sum = 0.0;
+        for (float value : arr) {
+            sum += value;
+        }
+        return sum / arr.length;
     }
-
+ 
     /**
      * Counts how many odd numbers there are in the values of a Map.
      * @param map a HashMap of String keys and Integer values
@@ -40,9 +59,16 @@ public class MidtermPractice {
      * Example: input: {"a"=7, "x"=4, "z"=5} -> output: 2
      */
     public static int countOddNumbers(Map<String, Integer> map) {
-        return -1;
+        int count = 0;
+        for (int value : map.values()) {
+            // use != 0 rather than == 1, because -3 % 2 is -1 in Java
+            if (value % 2 != 0) {
+                count++;
+            }
+        }
+        return count;
     }
-
+ 
     /**
      * Returns true if all values are divisible by 3 in an array.
      * Also returns true if the array is empty.
@@ -52,9 +78,14 @@ public class MidtermPractice {
      * Example 2: input: [3, 4, 6, 9] -> output: false
      */
     public static boolean allDivisibleBy3(int[] arr) {
-        return false;
+        for (int value : arr) {
+            if (value % 3 != 0) {
+                return false;
+            }
+        }
+        return true;
     }
-
+ 
     /**
      * Returns true if all words start with 'a' or 'A' in an List of Strings.
      * Returns true if the list is empty.
@@ -64,18 +95,34 @@ public class MidtermPractice {
      * Example: input: ["apple", "banana", "avocado"] -> output: false
      */
     public static boolean allStartWithA(List<String> list) {
-        return false;
+        for (String word : list) {
+            if (word.isEmpty()) {
+                return false;
+            }
+            char first = word.charAt(0);
+            if (first != 'a' && first != 'A') {
+                return false;
+            }
+        }
+        return true;
     }
-
+ 
     /**
      * Returns whether all nodes in a linked list contain positive (greater than 0) values.
      * Returns true if the head is null.
      * @param head the head of the linked list.
      */
     public static boolean allPositive(ListNode head) {
+        ListNode current = head;
+        while (current != null) {
+            if (current.data <= 0) {
+                return false;
+            }
+            current = current.next;
+        }
         return true;
     }
-
+ 
     /**
      * Returns the product of all values in a linked list or 1 if the head is null.
      * @param head the head of the linked list
@@ -85,15 +132,21 @@ public class MidtermPractice {
      * Explanation: 5 * 3 * 4 = 60
      */
     public static int product(ListNode head) {
-        return 1;
+        int result = 1;
+        ListNode current = head;
+        while (current != null) {
+            result *= current.data;
+            current = current.next;
+        }
+        return result;
     }
-
+ 
     /**
      * CHALLENGE PROBLEM: take extra time for this problem if needed
-     * 
+     *
      * Removes all nodes with values strictly less than 10 and returns the new head.
      * Returns null if the resulting list is empty.
-     * 
+     *
      * @param head the original head of the linked list
      * @return the new head of the linked list
      * Example Input: 6 -> 99 -> 2 -> 33 -> 10 -> 4
@@ -101,7 +154,22 @@ public class MidtermPractice {
      * Explanation: 6, 2, and 4 are each strictly less than 10, so they are removed from the list
      */
     public static ListNode removeSmall(ListNode head) {
-        return null;
+        while (head != null && head.data < 10) {
+            head = head.next;
+        }
+        if (head == null) {
+            return null;
+        }
+ 
+        ListNode current = head;
+        while (current.next != null) {
+            if (current.next.data < 10) {
+                current.next = current.next.next;
+            } else {
+                current = current.next;
+            }
+        }
+        return head;
     }
-
+ 
 }
