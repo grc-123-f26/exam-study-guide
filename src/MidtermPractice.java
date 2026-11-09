@@ -1,3 +1,5 @@
+import static org.junit.Assert.fail;
+
 import java.util.List;
 import java.util.Map;
 
@@ -10,7 +12,13 @@ public class MidtermPractice {
      * Example: input: ["apple", "banana", "kiwi"] -> output: "banana"
      */
     public static String findLongestWord(List<String> list) {
-        return "";
+        String word = "";
+        for (String string : list) {
+            if (string.length() > word.length()) {
+                word = string;
+            }
+        }
+        return word;
     }
 
     /**
@@ -20,7 +28,13 @@ public class MidtermPractice {
      * Example: input: ["why"=7, "hello"=8, "brilliant"=99, "world"=15, "amazing"=17] -> output: 2
      */
     public static int countLongWords(Map<String, Integer> map) {
-        return -1;
+        int counter = 0;
+        for (String string : map.keySet()) {
+            if (string.length() > 5) {
+                counter++;
+            } 
+        }
+        return counter;
     }
 
     /**
@@ -30,7 +44,18 @@ public class MidtermPractice {
      * Example: input: [1.5, 3.5, 2.0, 3.0] -> output: 2.5
      */
     public static double findAverage(float[] arr) {
-        return -1.0;
+        double avg = 0;
+        if (arr.length == 0) {
+            return 0;
+        } 
+        else {
+            for (int i = 0; i < arr.length; i++) {
+                avg += arr[i];
+            }
+            avg /= arr.length;
+        }
+
+    return avg;
     }
 
     /**
@@ -40,7 +65,13 @@ public class MidtermPractice {
      * Example: input: {"a"=7, "x"=4, "z"=5} -> output: 2
      */
     public static int countOddNumbers(Map<String, Integer> map) {
-        return -1;
+        int count = 0;
+        for (int n : map.values()) {
+            if (n % 2 != 0) {
+                count++;
+            }
+        }
+        return count;
     }
 
     /**
@@ -52,8 +83,13 @@ public class MidtermPractice {
      * Example 2: input: [3, 4, 6, 9] -> output: false
      */
     public static boolean allDivisibleBy3(int[] arr) {
-        return false;
+        for (int index = 0; index < arr.length; index++) {
+            if (arr[index] % 3 != 0) {
+                return false;
+        }
     }
+    return true;
+}
 
     /**
      * Returns true if all words start with 'a' or 'A' in an List of Strings.
@@ -64,7 +100,12 @@ public class MidtermPractice {
      * Example: input: ["apple", "banana", "avocado"] -> output: false
      */
     public static boolean allStartWithA(List<String> list) {
-        return false;
+        for (String string : list) {
+            if (string.toLowerCase().charAt(0) != 'a') {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -73,6 +114,15 @@ public class MidtermPractice {
      * @param head the head of the linked list.
      */
     public static boolean allPositive(ListNode head) {
+        int num = 0;
+        ListNode current = head;
+        while (current != null) {
+            num = current.data;
+            if (num <= 0) {
+                return false;
+            }
+            current = current.next;
+        }
         return true;
     }
 
@@ -85,8 +135,14 @@ public class MidtermPractice {
      * Explanation: 5 * 3 * 4 = 60
      */
     public static int product(ListNode head) {
-        return 1;
+        ListNode current = head;
+        int product = 1;
+        while (current != null) {
+            product *= current.data;
+            current = current.next;
     }
+    return product;
+}
 
     /**
      * CHALLENGE PROBLEM: take extra time for this problem if needed
@@ -100,8 +156,18 @@ public class MidtermPractice {
      * Example output: 99 -> 33 -> 10
      * Explanation: 6, 2, and 4 are each strictly less than 10, so they are removed from the list
      */
-    public static ListNode removeSmall(ListNode head) {
-        return null;
+public static ListNode removeSmall(ListNode head) {
+    while (head != null && head.data < 10) {
+        head = head.next;
     }
-
+        ListNode curr = head;
+        while (curr != null && curr.next != null) {
+            if (curr.next.data < 10) {
+                curr.next = curr.next.next;
+            } else {
+                curr = curr.next;  
+            }
+        }
+    return head;
+    }
 }
