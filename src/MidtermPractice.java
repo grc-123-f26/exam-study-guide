@@ -10,7 +10,15 @@ public class MidtermPractice {
      * Example: input: ["apple", "banana", "kiwi"] -> output: "banana"
      */
     public static String findLongestWord(List<String> list) {
-        return "";
+        String longest = "";
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).length() > longest.length()) {
+                System.out.println(longest);
+                longest = list.get(i);  
+            }    
+        }
+        System.out.println(longest);
+        return longest;
     }
 
     /**
@@ -20,7 +28,15 @@ public class MidtermPractice {
      * Example: input: ["why"=7, "hello"=8, "brilliant"=99, "world"=15, "amazing"=17] -> output: 2
      */
     public static int countLongWords(Map<String, Integer> map) {
-        return -1;
+        int output = 0;
+        for (String word : map.keySet()) {
+            System.out.println(word);
+            if(word.length() > 5){
+                output ++;
+            }
+        }
+        return output;
+
     }
 
     /**
@@ -30,7 +46,17 @@ public class MidtermPractice {
      * Example: input: [1.5, 3.5, 2.0, 3.0] -> output: 2.5
      */
     public static double findAverage(float[] arr) {
-        return -1.0;
+        int count = 0;
+        double sum = 0.0;
+        for (float f : arr) {
+            sum += f;
+            count++;
+        }
+
+        if (count == 0) {
+            return 0;
+        }
+        return (sum/count);
     }
 
     /**
@@ -40,7 +66,13 @@ public class MidtermPractice {
      * Example: input: {"a"=7, "x"=4, "z"=5} -> output: 2
      */
     public static int countOddNumbers(Map<String, Integer> map) {
-        return -1;
+        int count = 0;
+        for (String key : map.keySet()) {
+            if (map.get(key) % 2 != 0) {
+                count ++;
+            }
+        }
+        return count;
     }
 
     /**
@@ -52,7 +84,12 @@ public class MidtermPractice {
      * Example 2: input: [3, 4, 6, 9] -> output: false
      */
     public static boolean allDivisibleBy3(int[] arr) {
-        return false;
+        for (int i : arr) {
+            if(i % 3 != 0){
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -64,7 +101,14 @@ public class MidtermPractice {
      * Example: input: ["apple", "banana", "avocado"] -> output: false
      */
     public static boolean allStartWithA(List<String> list) {
-        return false;
+        for (String word : list) {
+            System.out.println(word);
+            if (word.charAt(0) == 'a' || word.charAt(0) == 'A') {
+            } else {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -73,6 +117,13 @@ public class MidtermPractice {
      * @param head the head of the linked list.
      */
     public static boolean allPositive(ListNode head) {
+        ListNode current = head;
+        while (current != null) {
+            if (current.data <= 0 ) {
+                return false;
+            }
+            current = current.next;
+        }
         return true;
     }
 
@@ -85,7 +136,16 @@ public class MidtermPractice {
      * Explanation: 5 * 3 * 4 = 60
      */
     public static int product(ListNode head) {
-        return 1;
+        if (head == null) {
+            return 1;    
+        }
+        ListNode current = head;
+        int product = 1;
+        while (current != null) {
+            product = product * current.data;
+            current = current.next;
+        }
+        return product;
     }
 
     /**
@@ -101,7 +161,35 @@ public class MidtermPractice {
      * Explanation: 6, 2, and 4 are each strictly less than 10, so they are removed from the list
      */
     public static ListNode removeSmall(ListNode head) {
-        return null;
-    }
+        ListNode newHead = null;
+        ListNode current = head;
+        while(current != null && current.next != null){
+            if (current.data >= 10) {
+                newHead = current;
+                break;
+            } else {
+                current = current.next;
+            }
+        }
+        ListNode nextNode = current.next;
+        while (nextNode != null) {
+            if (nextNode.data < 10) {
+                current.next = current.next.next;
+                nextNode = current.next;
+            } else {
+                nextNode = current.next.next;
+                current = current.next;
+            }
+        }
+
+        current = newHead;
+       while (current != null) {
+        System.out.println(current.data);
+        current = current.next;
+       }
+        return newHead;
+
+
+}
 
 }
